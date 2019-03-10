@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_main)
 
         // Construct a GeoDataClient.
-        mGeoDataClient = Places.getGeoDataClient(this, null)
+        mGeoDataClient = Places.getGeoDataClient(this)
 
         // Construct a PlaceDetectionClient.
-        mPlaceDetectionClient = Places.getPlaceDetectionClient(this, null)
+        mPlaceDetectionClient = Places.getPlaceDetectionClient(this)
 
         // Construct a FusedLocationProviderClient.
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
