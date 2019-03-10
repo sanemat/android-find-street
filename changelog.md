@@ -1,3 +1,8 @@
+<a name="1.1.0"></a>
+## 1.1.0 (2019-03-10)
+
+- Use google maps instead of mapbox
+
 <a name="1.0.6"></a>
 ## 1.0.6 (2019-01-27)
 
