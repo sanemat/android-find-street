@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         // Build the map.
-        val mapFragment = getSupportFragmentManager()
+        val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
@@ -135,9 +135,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
             override fun getInfoContents(marker: Marker): View {
                 // Inflate the layouts for the info window, title and snippet.
-                val infoWindow = getLayoutInflater().inflate(
+                val infoWindow = layoutInflater.inflate(
                     R.layout.custom_info_contents,
-                    findViewById(R.id.map) as FrameLayout, false
+                    findViewById<FrameLayout>(R.id.map), false
                 )
 
                 val title = infoWindow.findViewById(R.id.title) as TextView
@@ -212,7 +212,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
          * onRequestPermissionsResult.
          */
         if (ContextCompat.checkSelfPermission(
-                this.getApplicationContext(),
+                this.applicationContext,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
@@ -238,7 +238,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         when (requestCode) {
             PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION -> {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true
                 }
             }
@@ -263,8 +263,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     // Set the count, handling cases where less than 5 entries are returned.
                     val count: Int
-                    if (likelyPlaces!!.getCount() < M_MAX_ENTRIES) {
-                        count = likelyPlaces.getCount()
+                    if (likelyPlaces!!.count < M_MAX_ENTRIES) {
+                        count = likelyPlaces.count
                     } else {
                         count = M_MAX_ENTRIES
                     }
@@ -277,12 +277,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     for (placeLikelihood in likelyPlaces) {
                         // Build a list of likely places to show the user.
-                        mLikelyPlaceNames[i] = placeLikelihood.getPlace().getName() as String
-                        mLikelyPlaceAddresses[i] = placeLikelihood.getPlace()
-                            .getAddress() as String
-                        mLikelyPlaceAttributions[i] = placeLikelihood.getPlace()
-                            .getAttributions() as String
-                        mLikelyPlaceLatLngs[i] = placeLikelihood.getPlace().getLatLng()
+                        mLikelyPlaceNames[i] = placeLikelihood.place.name as String
+                        mLikelyPlaceAddresses[i] = placeLikelihood.place
+                            .address as String
+                        mLikelyPlaceAttributions[i] = placeLikelihood.place
+                            .attributions as String
+                        mLikelyPlaceLatLngs[i] = placeLikelihood.place.latLng
 
                         i++
                         if (i > count - 1) {
