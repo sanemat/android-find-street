@@ -6,4 +6,8 @@
     </string>
     <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
     <string name="title_activity_maps">Map</string>
+    <string name="default_info_title">Default Location</string>
+    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
+    <string name="option_get_place">Get place</string>
+    <string name="pick_place">Choose a place</string>
 </resources>
