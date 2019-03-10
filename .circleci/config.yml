@@ -22,7 +22,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Copy secrets
-          command: cp .circleci/secrets.yml app/src/main/res/values/secrets.xml
+          command: cp .circleci/secrets.xml app/src/main/res/values/secrets.xml
       - run:
           name: Run Tests
           command: ./gradlew lint test
