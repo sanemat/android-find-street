@@ -240,10 +240,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true
+                    updateLocationUI()
                 }
             }
         }
-        updateLocationUI()
     }
 
     /**
